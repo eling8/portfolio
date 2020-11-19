@@ -35,13 +35,13 @@
         <!-- Masthead-->
         <section class="about-section text-center" id="about">
             <div class="container">
-                <img class="img-project" src="assets/img/project-urbanspiderwebs.png" alt="" />
+                <img class="img-project" src="assets/img/project-chinesener.png" alt="" />
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         </h4>
-                        <h1 class="text-white mb-4">Urban Spiderwebs: Detecting and Modeling Traffic Congestion within Urban Road Networks</h1>
+                        <h1 class="text-white mb-4">Named Entity Recognition and Compositional Morphology for Word Representations in Chinese</h1>
                         <p class="text-white-50">
-                            Using network analysis, graph centrality measures, and traffic analysis to identify potential areas of high traffic congestion in cities around the world.
+                            Named entity recognition (NER) for Chinese, particularly using character and radical-level features.
                         </p>
                     </div>
                 </div>
@@ -54,32 +54,19 @@
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
                         <p>
-                            As city populations continue to swell, city planners and civil engineers need to match the tide of incoming people with scalable transportation systems that can support a growing population, or else face gridlock congestion and immobility undesirable for inhabitants and visitors.
+                            We approach the task of named entity recognition (NER) for Chinese by representing each entity with a composition of its traits: the token-entity, its characters, and its characters’ main radicals. Character and radical-level information for each entity are included to provide additional relationships that might not be strictly captured within a token-entity’s word embedding during training. We learn using neural networks that are some combination of the following traits: unidirectional or bidirectional; single or multi-layer; simple, gated recurrent unit (GRU), or long short term memory (LSTM) celled. We achieve a maximum not-O token-level F1 score of 76 and entity-level F1 of 70. 
                         </p>
                         <p>
-                            In our project, we used various measures of graph centrality including betweenness, approximate weighted betweenness, and closeness centrality, as well as a custom metric of urbanness, to identify which areas of a city's road network has the greatest potential for traffic congestion for vehicles. We created traffic simulations for dynamic, empirical insight and visualizations into which streets experience the most vehicle traffic. After drawing conclusions from our results, we compared and contrasted the different metrics of traffic congestion, as well as the differences observed in cities across the world and their points of peak traffic.
+                            NER is a task in Natural Language Processing (NLP) that is concerned with taking an input sentence and identifying entities in the text which fall into categories such as PERSON, ORGANIZATION, and LOCATION. Most NER efforts have been focused on classifying entities in English sentences, while other languages have had less focus. This project seeks to further explore NER for the Chinese written language. 
                         </p>
-                        
-                        
-                        <div class="row justify-content-center no-gutters">
-                            <div class="col-lg-8"><img class="img-fluid mb-4" src="assets/img/urbanspiderwebs/sf-all.png" alt="" /></div>
-                            <div class="col-lg-4"><img class="img-fluid mb-4" src="assets/img/urbanspiderwebs/legend.png" alt="" /></div>
-                        </div>
-                        <p><b>Above: San Francisco Traffic Congestion Measures</b></p>
                         <p>
-                            (left column): Unweighted closeness, exact weighted closeness, exact unweighted closeness. (right column): Unweighted betweenness, weighted betweenness, urbanness
+                            There are key differences between the Chinese and English languages. Chinese entities are composed of 50,000 characters, unlike English entities which are composed of 26 letters. Each Chinese character holds intrinsic meaning, but also embodies and contributes to a wide variety of meanings depending on which entity it is part of and its surrounding context. This differs from English, as the letter ”c” by itself holds no intrinsic meaning. Additionally, obvious English features used in NER such as word capitalization do not exist in Chinese. The Chinese written language also does not contain spaces between entities, so word segmentation is an additional challenge. Thus, imperfect segmentation techniques must be performed on datasets before NER-work, adding another layer of difficulty. 
+                        </p>
+                        <p>
+                            An additional feature we have decided to include that is specific to the Chinese language is each character’s main radical. A radical is a sub-part of a character. There are 214 radicals, which were identified historically by the Qing Emperor Kangxi; today, radicals are used as the basis for Chinese dictionary indexing. Radicals help to convey additional meaning behind each character. Take for example, the characters 食 (food), 餓 (hungry), 飯 (rice), and 餐 (meal). All of these characters have the main radical 食 and are related to food. We establish and feed to our neural network additional relational information through radical embeddings we train using a skip-gram word2vec model. 
                         </p>
 
-                        <div class="row justify-content-center no-gutters">
-                            <div class="col-lg-6"><img class="img-fluid mb-4" src="assets/img/urbanspiderwebs/urbanness.png" alt="" /></div>
-                            <div class="col-lg-6"><img class="img-fluid mb-4" src="assets/img/urbanspiderwebs/traffic-sim.png" alt="" /></div>
-                        </div>
-                        <div class="row justify-content-center no-gutters">
-                            <div class="col-lg-6"><p><b>Urbanness:</b> (clockwise from upper left) Jerusalem, Israel; Bogota, Colombia; Los Angeles, California; Seoul, South Korea</p></div>
-                            <div class="col-lg-6"><p><b>Traffic simulation:</b> (clockwise from upper left) Sydney, Australia; Rio de Janeiro, Brazil; Doha, Qatar; Cairo, Egypt</p></div>
-                        </div>
-
-                        <a class="btn btn-primary js-scroll-trigger" href="assets/files/urbanspiderwebs-paper.pdf">Download the paper</a>
+                        <a class="btn btn-primary js-scroll-trigger" href="assets/files/chinesener-paper.pdf">Download the paper</a>
                     </div>
 
                     <div class="col-lg-2"></div>
@@ -93,12 +80,12 @@
                     </div>
                     <div class="col-lg-6">
                         <p>
-                            This was my final project for <i>Social and Information Network Analysis (CS224W)</i>, which I took during fall 2016 at Stanford University. The course focused on techniques for analyzing and understanding large networks, including social and information networks.
+                            This was my final project for <i>Natural Language Processing with Deep Learning (CS224N/LINGUIST284)</i>, which I took during winter 2017 at Stanford University. The course focused on neural network models for NLP, including question answering and machine translation.
                         </p>
                         <p>
-                            The project was done in partnership with another student in the course.TODO: DISCUSS MY ROLE
+                            The project was done in partnership with two other students in the course. TODO: DISCUSS MY ROLE
                         </p>
-                        <p><i>December 2016</i></p>
+                        <p><i>March 2017</i></p>
                     </div>
                 </div>
             </div>
