@@ -10343,3 +10343,21 @@ body {
 .footer {
   padding: 5rem 0;
 }
+
+.proj-divider {
+  border-color: #b9babd;
+  border-width: 0.08rem;
+}
+.projects-section a {
+  color: #212529;
+  text-decoration: none;
+}
+.projects-section a:hover, .projects-section a:focus {
+  color: #64a19d;
+  text-decoration: none;
+}
+.img-project {
+  max-width: 60%;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
