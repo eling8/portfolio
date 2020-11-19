@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Emily Ling - Portfolio</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="index.html">Emily Ling</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#projects">Projects</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <section class="about-section text-center" id="about">
+            <div class="container">
+                <img class="img-project" src="assets/img/project-esw.png" alt="" />
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        </h4>
+                        <h1 class="text-white mb-4">Remote Monitoring for Vaccine Refrigerators</h1>
+                        <p class="text-white-50">
+                            This project was done as part of Stanford’s Engineers for a Sustainable World (ESW) chapter. We partnered with PATH, a global healthcare non-profit, to create a system to remotely monitor vaccine refrigerators.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects-->
+        <section class="projects-section" id="projects">
+            <div class="container">
+                <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <p>
+                            The goal of this project, which was done as part of Stanford’s Engineers for a Sustainable World (ESW) chapter, was to create a vaccine refrigeration remote monitoring system meeting specifications given to us by PATH, a non-profit global healthcare organization. The system needed to be capable of collecting data about the refrigeration system’s current and voltage, as well as of making 8 separate temperature measurements. The system needed to be capable of both locally recording the data it collects and transmitting the data such that it can be remotely viewed and downloaded in a format readable by Excel.
+                        </p>
+                        <p>Project Aims:</p>
+                        <ul>
+                            <li>Develop a remote monitoring system for vaccine refrigerators</li>
+                            <li>Create an device to read temperature, voltage, and current data from the refrigerators and transmit the data</li>
+                            <li>Create a web application to receive and process the data</li>
+                            <li>Connect the device and web application to make data available remotely</li>
+                            <li>Develop a way to view the data online</li>
+                            <li>Develop a way to download the data</li>
+                            <li>Test the monitoring system and fix as needed</li>
+                            <li>Write a clear user guide to allow others to use our system</li>
+                            <li>Deliver the monitoring system to PATH</li>
+                        </ul>
+                        <p>
+                            Our final product consists of an Arduino platform capable of measuring temperature, voltage, and current data from the refrigerators and both saving this data on an SD card and transmitting this data to the database of a website. The website gives PATH users who know the general password the ability to view data visualizations and raw data and to download data over any desired time range in a .csv format.
+                        </p>
+                        <p>
+                            The website was built using Ruby and hosted on Heroku. The application receives data via Twilio and uses Chartkick for data visualization. The website may be accessed with password Stanford.
+                        </p>
+                        <img class="img-fluid mb-4" src="assets/img/esw-screenshot.png" alt="" />
+
+                        <a class="btn btn-primary js-scroll-trigger" href="https://eswvaccineproject.herokuapp.com/">View the website</a>
+                        <a class="btn btn-primary js-scroll-trigger" href="assets/files/esw-paper.pdf">Download the report</a>
+                        <a class="btn btn-primary js-scroll-trigger" href="https://github.com/eling8/eswvaccineproject">Github repo</a>
+                    </div>
+
+                    <div class="col-lg-2"></div>
+                </div>
+
+                <!-- Additional info -->
+                <hr class="proj-divider mt-4" />
+                <div class="row justify-content-center no-gutters mt-5">
+                    <div class="col-lg-6">
+                        <h2>Additional information</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>
+                            This was a project completed by Stanford University’s <i>Engineers for a Sustainable World (ESW)</i> chapter, in partnership with the global health nonprofit, PATH. The team consisted of six Stanford students with computer science or electrical engineering backgrounds. My contributions included some Raspberry Pi work and the bulk of the web development and data visualization work.
+                        </p>
+                        <p><i>January - June 2015</i></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="contact-section bg-black">
+            <div class="container">
+                <div class="social d-flex justify-content-center">
+                    <a class="mx-2" href="mailto:emilyx.ling@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a class="mx-2" href="https://github.com/eling8"><i class="fab fa-github"></i></a>
+                    <a class="mx-2" href="http://instagram.com/emling.photo"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container">Emily Ling, 2020</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
