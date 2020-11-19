@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Emily Ling - Portfolio</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="index.html">Emily Ling</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="index.html#projects">Projects</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <section class="about-section text-center" id="about">
+            <div class="container">
+                <img class="img-project" src="assets/img/TODO" alt="" />
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        </h4>
+                        <h1 class="text-white mb-4">Automatically generating song lyrics based on artist style and theme</h1>
+                        <p class="text-white-50">
+                            An AI model that generates song lyrics in the style of a particular artist, based on a theme or topic.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Projects-->
+        <section class="projects-section" id="projects">
+            <div class="container">
+                <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-8">
+                        <p>
+                            The goal of this project was to generate song lyrics in the style of a particular artist, based on a theme or topic. There were two major aspects of the project for our task. The first was figuring out how to cluster songs in such a way that cohesive themes would arise. The second was using AI techniques to generate lyrics in the style of the artist.
+                        </p>
+                        <ul>
+                            <li>Created a lyrics dataset from azlyrics.com of approximately 120 popular artists, with a total of over 6000 songs.</li>
+                            <li>Used K-means clustering on song lyrics to create groups of songs with similar ideas.</li>
+                            <li>Used an N-gram Markov model to generate lyrics.</li>
+                            <li>Evaluated using a rubric to score actual songs vs. generated songs</li>
+                        </ul>
+                        <p>
+                            For our final model, we decided to use NLTK to filter out words that were not nouns, verbs, adjectives or adverbs. We then used a Snowball stemmer to get the stem of each word. We realized that words like ‘loving’ and ‘love’ should be in similar themes, but they were separate features in our current model. We created a song-word matrix again, but with the filtered, stemmed words. We also used TF-IDF and SVD to collapse the matrix. 
+                        </p>
+
+                        <a class="btn btn-primary js-scroll-trigger" href="assets/files/lyrics-paper.pdf">Download the paper</a>
+                    </div>
+
+                    <div class="col-lg-2"></div>
+                </div>
+
+                <!-- Additional info -->
+                <hr class="proj-divider mt-4" />
+                <div class="row justify-content-center no-gutters mt-5">
+                    <div class="col-lg-6">
+                        <h2>Additional information</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <p>
+                            This was my final project for <i>Artificial Intelligence: Principles and Techniques (CS221)</i>, which I took during fall 2015 at Stanford University. The course introduced a variety of concepts in artificial intelligence, including search, constraint satisfaction, game playing, Markov decision processes, graphical models, machine learning, and logic. 
+                        </p>
+                        <p>
+                            The project was done in partnership with two other students in the course. TODO: DISCUSS MY ROLE
+                        </p>
+                        <p><i>December 2015</i></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact-->
+        <section class="contact-section bg-black">
+            <div class="container">
+                <div class="social d-flex justify-content-center">
+                    <a class="mx-2" href="mailto:emilyx.ling@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a class="mx-2" href="https://github.com/eling8"><i class="fab fa-github"></i></a>
+                    <a class="mx-2" href="http://instagram.com/emling.photo"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </section>
+        <!-- Footer-->
+        <footer class="footer bg-black small text-center text-white-50"><div class="container">Emily Ling, 2020</div></footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
