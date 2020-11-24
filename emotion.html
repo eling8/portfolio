@@ -41,7 +41,7 @@
                         </h4>
                         <h1 class="text-white mb-4">From Images to Emotions and Emotions to Images: Toward Emotion-Driven Scenes</h1>
                         <p class="text-white-50">
-                            TODO
+                            Using CNNs to predict emotion from an image and its scene graph, and reversing this to predict the elements of an image's content from an emotion distribution.
                         </p>
                     </div>
                 </div>
@@ -58,6 +58,9 @@
                         </p>
                         <p>
                             In this work, we have explored an initial approach towards a translation from emotional intent to scene component creation. We aimed to leverage emotion-labeled image datasets and scene graph-labeled image datasets to learn mappings between these domains. To do so, we generated proxy datasets based on ground-truth emotions with predicted scene components (objects) and based on ground-truth scene graphs with predicted emotion distributions. This step comprised a substantial portion of our task: learning to predict emotion distributions based on input images. Using CNN-based approaches and building a supplementary model that predicted emotion stimuli maps for images, we achieved our best-performing model which exceeded the performance of prior published work.
+                        </p>
+                        <p>
+                            For the scope of this project, we focus on predicting an image’s emotion distribution given the image and its scene graph, and then reversing that mapping to predict elements of an image’s content given an emotion distribution. To do this, we propose the following process. First, we train an emotion distribution predictor on an image emotion classification dataset, Emotion6. Then, we once we achieve a satisfactory model, we run this model on a dataset with human-annotated scene graphs, such as Visual Genome, to learn a mapping between scene graphs and emotions. Finally, we reverse this mapping to enable prediction of scene graph components based on an input emotion distribution.
                         </p>
 
                         <div class="row justify-content-center no-gutters">
