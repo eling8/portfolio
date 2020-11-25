@@ -54,12 +54,30 @@
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
                         <p>
-                            As city populations continue to swell, city planners and civil engineers need to match the tide of incoming people with scalable transportation systems that can support a growing population, or else face gridlock congestion and immobility undesirable for inhabitants and visitors.
+                            As city populations continue to swell, city planners and civil engineers need to match the tide of incoming people with scalable transportation systems that can support a growing population, or else face gridlock congestion and immobility undesirable for inhabitants and visitors. In this project, we used various measures of graph centrality including betweenness, approximate weighted betweenness, and closeness centrality, as well as a custom metric of urbanness, to identify which areas of a city's road network have the greatest potential for traffic congestion for vehicles. We created traffic simulations for dynamic, empirical insight and visualizations into which streets experience the most vehicle traffic. After drawing conclusions from our results, we compared and contrasted the different metrics of traffic congestion, as well as the differences observed in cities across the world and their points of peak traffic.
                         </p>
                         <p>
-                            In our project, we used various measures of graph centrality including betweenness, approximate weighted betweenness, and closeness centrality, as well as a custom metric of urbanness, to identify which areas of a city's road network has the greatest potential for traffic congestion for vehicles. We created traffic simulations for dynamic, empirical insight and visualizations into which streets experience the most vehicle traffic. After drawing conclusions from our results, we compared and contrasted the different metrics of traffic congestion, as well as the differences observed in cities across the world and their points of peak traffic.
+                            For this project, we obtained data on urban road networks from OpenStreetMap (OSM), a crowd-sourced project that collects extensive geographic data about roads, trails, buildings, and more, from all over the world. We analyzed the road networks of 25 fairly large cities representing all regions of the world, with some diversity in terms of population, size, and history, in order to be able to compre and contrast different regions. The selected cities:
                         </p>
-                        
+                        <ul>
+                            <li>Asia: Shanghai, Beijing, Tokyo, Seoul, Jakarta</li>
+                            <li>Europe: London, Berlin, Saint Petersburg, Rome, Amsterdam</li>
+                            <li>North America: New York, San Francisco, Los Angeles, Vancouver, Mexico City</li>
+                            <li>South America: Rio de Janeiro, Sao Paulo, Santiago, Bogota, Buenos Aires</li>
+                            <li>Africa: Nairobi, Cape Town, Cairo, Addis-Abeba, Accra</li>
+                            <li>Middle East: Istanbul, Doha, Jerusalem</li>
+                            <li>Oceania: Sydney, Auckland</li>
+                        </ul>
+                        <p>
+                            In order to gain insight into potential areas of traffic congestion in each city's road network, we used the following measures to identify high-traffic nodes:
+                        </p>
+                        <ul>
+                            <li><b>Betweenness centrality:</b> Measures the number of shortest paths in the graph (from every node to every other node) that traverse that node. This captures how “well-trodden” a path or intersection is, since it measures to the number of pairs of nodes that must travel over that path or intersection to arrive at each other.</li>
+                            <li><b>Approximate weighted betweenness centrality:</b> A custom modification of betweenness centrality that 1) accounts for the actual distance covered by each edge in the road network and 2) randomly samples 1/100 of all pairs of nodes in order to improve speed.</li>
+                            <li><b>Closeness centrality:</b> Measures the average length of the shortest path between a node and every other node in the network. A lower closeness centrality indicates that a node occupies a more central location in the graph.</li>
+                            <li><b>Approximate weighted closeness centrality:</b> A custom modification of closeness centrality, again using actual distance and random sampling.</li>
+                            <li><b>Urbanness:</b> A custom measure we created, defined as the reciprocal of the average distance from a node to its nearest 500 nodes, as traversed in a weighted Dijkstra search from the node. Intuitively, we designed this measure to capture how concentrated a location is, where dense clustering of nodes may be indicate dense intersections and thus traffic congestion.</li>
+                        </ul>
                         
                         <div class="row justify-content-center no-gutters">
                             <div class="col-lg-8"><img class="img-fluid mb-4" src="assets/img/urbanspiderwebs/sf-all.png" alt="" /></div>
@@ -70,15 +88,24 @@
                             (left column): Unweighted closeness, exact weighted closeness, exact unweighted closeness. (right column): Unweighted betweenness, weighted betweenness, urbanness
                         </p>
 
-                        <div class="row justify-content-center no-gutters">
-                            <div class="col-lg-6"><img class="img-fluid mb-4" src="assets/img/urbanspiderwebs/urbanness.png" alt="" /></div>
-                            <div class="col-lg-6"><img class="img-fluid mb-4" src="assets/img/urbanspiderwebs/traffic-sim.png" alt="" /></div>
-                        </div>
-                        <div class="row justify-content-center no-gutters">
-                            <div class="col-lg-6"><p><b>Urbanness:</b> (clockwise from upper left) Jerusalem, Israel; Bogota, Colombia; Los Angeles, California; Seoul, South Korea</p></div>
-                            <div class="col-lg-6"><p><b>Traffic simulation:</b> (clockwise from upper left) Sydney, Australia; Rio de Janeiro, Brazil; Doha, Qatar; Cairo, Egypt</p></div>
-                        </div>
+                        <h4>Traffic Simulation</h4>
+                        <p>
+                            In addition to using static graph measures, we implemented a dynamic traffic simulation to predict areas of congestion. We model the road network as a dual graph: all streets are represented as nodes instead of edges, and an intersection of two or more streets is represented as a complete graph between the street nodes that meet at the intersection. By modeling streets as nodes, we can associate with a street node its length and geographical coordinates, and more easily account for the time a car spends traversing a street.
+                        </p>
+                        <p>
+                            Each car is given a randomly generated start and end location for its journey, where the route is determined by A* search. At each time step, the car advances further on its current street, until it proceeds to the next street. The speed of the car is determined in part by the number of other cars on the street at the same time interval -- more cars means a slower speed. After running the simulation for some time, we collected a long-term distribution of the number of cars present on each street, which we used as a measure of traffic congestion.
+                        </p>
 
+                        <div class="row justify-content-center no-gutters">
+                            <div class="col-lg-6">
+                                <img class="img-fluid mb-4" src="assets/img/urbanspiderwebs/urbanness.png" alt="" />
+                                <p><b>Urbanness:</b> (clockwise from upper left) Jerusalem, Israel; Bogota, Colombia; Los Angeles, California; Seoul, South Korea</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <img class="img-fluid mb-4" src="assets/img/urbanspiderwebs/traffic-sim.png" alt="" />
+                                <p><b>Traffic simulation:</b> (clockwise from upper left) Sydney, Australia; Rio de Janeiro, Brazil; Doha, Qatar; Cairo, Egypt</p>
+                            </div>
+                        </div>
                         <a class="btn btn-primary js-scroll-trigger" href="assets/files/urbanspiderwebs-paper.pdf">Download the paper</a>
                     </div>
 
@@ -96,7 +123,7 @@
                             This was my final project for <i>Social and Information Network Analysis (CS224W)</i>, which I took during fall 2016 at Stanford University. The course focused on techniques for analyzing and understanding large networks, including social and information networks.
                         </p>
                         <p>
-                            The project was done in partnership with another student in the course.TODO: DISCUSS MY ROLE
+                            The project was done in partnership with another student in the course. While much of the work was divided evenly, my particular focuses includes: downloading, parsing, and building graphs from OpenStreetMap data for 25 cities around the world; implementing and running data analysis on all traffic congestion measures; plotting and formatting all graphs and figures.
                         </p>
                         <p><i>December 2016</i></p>
                     </div>
