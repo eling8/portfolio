@@ -57,14 +57,12 @@
                             The goal of this project was to generate song lyrics in the style of a particular artist, based on a theme or topic. There were two major aspects of the project for our task. The first was figuring out how to cluster songs in such a way that cohesive themes would arise. The second was using AI techniques to generate lyrics in the style of the artist.
                         </p>
                         <ul>
-                            <li>Created a lyrics dataset from azlyrics.com of approximately 120 popular artists, with a total of over 6000 songs.</li>
-                            <li>Used K-means clustering on song lyrics to create groups of songs with similar ideas.</li>
-                            <li>Used an N-gram Markov model to generate lyrics.</li>
-                            <li>Evaluated using a rubric to score actual songs vs. generated songs</li>
+                            <li><b>Created a lyrics dataset.</b> We collected lyrics from azlyrics.com of approximately 120 popular artists, with a total of over 6000 songs.</li>
+                            <li><b>Used K-means clustering on song lyrics to create groups of songs with similar ideas.</b> We first extract nouns, verbs, adjectives and adverbs from each song and use the NLTK Snowball stemmer to stem them. Counts of these words are transformed into a vector representation of each song. For each artist, we create a song-word count matrix, which is first normalized using TF-IDF with add-one smoothing and then dimensionality reduced using Truncated SVD. Then, we use k-means clustering with three clusters identify groups of similar theme. Each cluster is identified by the most common words in that cluster, excluding stopwords.</li>
+                            <li><b>Used an N-gram Markov model to generate lyrics.</b>The user selects an artist and a theme, and our model will generate a song consisting of two verses, a chorus, and a bridge. Our model uses unigrams, bigrams, and trigrams to generate lyrics one word at a time; the n-gram count comes from songs by the selected artist in the selected theme cluster.</li>
+                            <li><b>Epsilon random word generation.</b> At a small probability (20%), the lyrics generator would randomly select a word from the full corpus of all songs rather than only words used previously by the artist, in order to expand the vocabulary.</li>
+                            <li><b>Evaluated the quality of our generated lyrics using a rubric.</b> The rubric asked for numerical ratings from 1 to 5 in two broad categories: 1. Artist and theme fidelity, and 2. Song fluency. We also asked responders to decide whether a given song was real or generated. We conducted 34 surveys, presenting each responder with either a real or generated song from one of five popular artists. We found that the primary weaknesses in our generated lyrics were grammatical correctness, fluency, and cohesion.</li>
                         </ul>
-                        <p>
-                            For our final model, we decided to use NLTK to filter out words that were not nouns, verbs, adjectives or adverbs. We then used a Snowball stemmer to get the stem of each word. We realized that words like ‘loving’ and ‘love’ should be in similar themes, but they were separate features in our current model. We created a song-word matrix again, but with the filtered, stemmed words. We also used TF-IDF and SVD to collapse the matrix. 
-                        </p>
 
                         <a class="btn btn-primary js-scroll-trigger" href="assets/files/lyrics-paper.pdf">Download the paper</a>
                     </div>
@@ -83,7 +81,7 @@
                             This was my final project for <i>Artificial Intelligence: Principles and Techniques (CS221)</i>, which I took during fall 2015 at Stanford University. The course introduced a variety of concepts in artificial intelligence, including search, constraint satisfaction, game playing, Markov decision processes, graphical models, machine learning, and logic. 
                         </p>
                         <p>
-                            The project was done in partnership with two other students in the course. TODO: DISCUSS MY ROLE
+                            The project was done in partnership with two other students in the course. The work was divided equally.
                         </p>
                         <p><i>December 2015</i></p>
                     </div>
