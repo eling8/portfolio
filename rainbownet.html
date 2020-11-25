@@ -61,7 +61,21 @@
                             <div class="col-lg-6"><img class="img-fluid mb-4" src="assets/img/rainbownet/test.png" alt="" /></div>
                         </div>
                         <p>
-                            Inspired by digital recoloring of historical photos, our project aims to train a convolutional neural network to colorize black-and-white images, optionally augmenting with embeddings obtained from Google’s Inception ResNet v2 (IRN2). Given a batch of RGB images, we generate a possible colorization by training and predicting in the CIE Lab color space. We additionally analyze our training data to examine which distributions of colors most often occur together via K-clustering. Our model predicts mostly browns, blues, and reds and performed better without the added complexity of the IRN2 fusion. 
+                            We were inspired to take on this project after learning about the time-intensive process of recoloring historical photos. The coloring of black-and-white historical images might take as long as a month, as artists research the colors on relevant fabrics, skin tones, and objects. This lengthy process is nonetheless rewarding, because it produces images that can bring history back to life for contemporary viewers, who might otherwise feel detached from old grayscale photographs. We wanted to explore how well a deep learning approach could perform on this task that takes human colorizers months to accomplish. 
+                        </p>
+                        <p>
+                            With grayscale images as inputs, we use a convolutional neural network to output a predicted color per pixel. All images were represented in the CIE Lab color space in order to separate the black-and-white from color information. We discretized the Lab color space into 112 buckets in order to map appropriately to RGB colors and encourage more vibrant colors; thus, we modeled this task as a multinomial classification problem to predict a color for each pixel in the image.
+                        </p>
+                        <p>
+                            We trained a convolutional neural network, optionally augmenting with embeddings obtained from Google’s Inception ResNet v2 (IRN2). The architecture of the neural network is as follows:
+                        </p>
+                        <ol>
+                            <li>Encoder block: two convolutional layers followed by BatchNorm</li>
+                            <li>Fusion layers: combination of encoder output and IRN2 embeddings</li>
+                            <li>Decoder block: two convolutional layers followed by BatchNorm, and 2x upsampling</li>
+                        </ol>
+                        <p>
+                           We used K-clustering to analyze our training data to examine which distributions of colors most often occur together, which helped to explain why our model tended towards predicting sepia colorizations. Our model predicts mostly browns, blues, and reds and performed better without the added complexity of the IRN2 fusion. 
                         </p>
                         
                         <a class="btn btn-primary js-scroll-trigger" href="assets/files/rainbownet-paper.pdf">Download the paper</a>
@@ -78,10 +92,7 @@
                     </div>
                     <div class="col-lg-6">
                         <p>
-                            This was my final project for <i>Machine Learning (CS229)</i>, which I took during fall 2017 at Stanford University.  The project was done in partnership with two other students. 
-                        </p>
-                        <p>
-                            TODO: DISCUSS MY ROLE
+                            This was my final project for <i>Machine Learning (CS229)</i>, which I took during fall 2017 at Stanford University.  The project was done in partnership with two other students. The work was divided fairly evenly between us, but my main contributions included the discretization of colors, creating the data and preprocessing pipeline, debugging the pipeline and models, and creating figures and the poster.
                         </p>
                         <p><i>December 2017</i></p>
                     </div>

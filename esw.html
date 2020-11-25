@@ -41,7 +41,7 @@
                         </h4>
                         <h1 class="text-white mb-4">Remote Monitoring for Vaccine Refrigerators</h1>
                         <p class="text-white-50">
-                            This project was done as part of Stanford’s Engineers for a Sustainable World (ESW) chapter. We partnered with PATH, a global healthcare non-profit, to create a system to remotely monitor vaccine refrigerators.
+                            A system to remotely monitor vaccine refrigerators, done as part of Stanford’s Engineers for a Sustainable World (ESW) chapter in partnership with PATH, a global healthcare non-profit.
                         </p>
                     </div>
                 </div>
@@ -54,22 +54,10 @@
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
                         <p>
-                            The goal of this project, which was done as part of Stanford’s Engineers for a Sustainable World (ESW) chapter, was to create a vaccine refrigeration remote monitoring system meeting specifications given to us by PATH, a non-profit global healthcare organization. The system needed to be capable of collecting data about the refrigeration system’s current and voltage, as well as of making 8 separate temperature measurements. The system needed to be capable of both locally recording the data it collects and transmitting the data such that it can be remotely viewed and downloaded in a format readable by Excel.
+                            The goal of this project, which was done as part of Stanford’s Engineers for a Sustainable World (ESW) chapter, was to create a vaccine refrigeration remote monitoring system meeting specifications given to us by PATH, a non-profit global healthcare organization. PATH needed a way to monitor the health and performance of vaccine refrigerators deployed in remote locations, in order to ensure the safety of the vaccines contained inside. The system needed to collect data about the refrigeration system’s current and voltage, as well as collect temperature measurements from 8 different locations inside the refrigerator. The system needed to locally record the data it collects and transmit the data such that it can be remotely viewed and downloaded.
                         </p>
-                        <p>Project Aims:</p>
-                        <ul>
-                            <li>Develop a remote monitoring system for vaccine refrigerators</li>
-                            <li>Create an device to read temperature, voltage, and current data from the refrigerators and transmit the data</li>
-                            <li>Create a web application to receive and process the data</li>
-                            <li>Connect the device and web application to make data available remotely</li>
-                            <li>Develop a way to view the data online</li>
-                            <li>Develop a way to download the data</li>
-                            <li>Test the monitoring system and fix as needed</li>
-                            <li>Write a clear user guide to allow others to use our system</li>
-                            <li>Deliver the monitoring system to PATH</li>
-                        </ul>
                         <p>
-                            Our final product consists of an Arduino platform capable of measuring temperature, voltage, and current data from the refrigerators and both saving this data on an SD card and transmitting this data to the database of a website. The website gives PATH users who know the general password the ability to view data visualizations and raw data and to download data over any desired time range in a .csv format.
+                            Our final product consisted of an Arduino platform capable of measuring temperature, voltage, and current data from the refrigerators. These measurements are saved locally to an SD card and also transmitted via SMS to be stored in a database. The website gives users the ability to view raw data and data visualizations, as well as download data over any desired time range in a .csv format.
                         </p>
                         <p>
                             The website was built using Ruby and hosted on Heroku. The application receives data via Twilio and uses Chartkick for data visualization. The website may be accessed with password Stanford.
