@@ -53,17 +53,45 @@
                 <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
+                        <h4>Overview</h4>
                         <p>
-                            We approach the task of named entity recognition (NER) for Chinese by representing each entity with a composition of its traits: the token-entity, its characters, and its characters’ main radicals. Character and radical-level information for each entity are included to provide additional relationships that might not be strictly captured within a token-entity’s word embedding during training. We learn using neural networks that are some combination of the following traits: unidirectional or bidirectional; single or multi-layer; simple, gated recurrent unit (GRU), or long short term memory (LSTM) celled. We achieve a maximum not-O token-level F1 score of 76 and entity-level F1 of 70. 
+                            As native Chinese speakers, we were interested in the task of named entity recognition (NER) on the Chinese written language.  We approached NER by representing each entity with a composition of its traits: the token, its characters, and its characters’ main radicals. We learn using neural networks with various combinations of the following traits: unidirectional or bidirectional; single or multi-layer; simple, gated recurrent unit (GRU), or long short term memory (LSTM) celled.
+                        </p>
+
+                        <h4>Details</h4>
+                        <p>
+                            The goal of NER is to take an input sentence and identify entities in the text which fall into categories such as PERSON, ORGANIZATION, and LOCATION. Because the Chinese and English languages have many key differences, we needed to adapt standard English NER approaches. These differences include:
+                        </p> 
+                        <ul>
+                            <li>Chinese entities are composed of 50,000+ characters, whereas English entities which are composed of just 26 letters.</li>
+                            <li>Each Chinese character holds intrinsic meaning, but also can take on a wide variety of meanings depending on which entity it is part of and its surrounding context.</li>
+                            <li>Obvious English features used in NER such as word capitalization do not exist in Chinese.</li>
+                            <li>The Chinese written language also does not contain spaces between entities, so word segmentation is an additional challenge.</li>
+                        </ul>
+                        <p>
+                            In order to adapt to the uniqueness of the Chinese language, we used not only entity-level features but also character and radical-level features. In Chinese, each character has a main radical, which is a sub-part of a character. There are 214 radicals, and each radical conveys additional meaning behind each character. Take for example, the characters 食 (food), 餓 (hungry), 飯 (rice), and 餐 (meal). All of these characters have the main radical 食 and are related to food.
                         </p>
                         <p>
-                            NER is a task in Natural Language Processing (NLP) that is concerned with taking an input sentence and identifying entities in the text which fall into categories such as PERSON, ORGANIZATION, and LOCATION. Most NER efforts have been focused on classifying entities in English sentences, while other languages have had less focus. This project seeks to further explore NER for the Chinese written language. 
+                            We experimented with 6 different combinations of input features, using token, character, and/or radical-level embeddings. These feature set types are shown below using the example token of 冰淇淋 (meaning ice cream):
                         </p>
+                        <ul>
+                            <li>token: the full token [冰淇淋]</li>
+                            <li>char: each character is inputted and labeled independently [冰]</li>
+                            <li>token-char: the token and first character of the token [冰淇淋 , 冰]</li>
+                            <li>char-rad: each character and main radical of the character [冰 , 水]</li>
+                            <li>token-char-char: the token and first and second characters of the token [冰淇淋 , 冰 , 淇]</li>
+                            <li>token-char-rad: the token, first character of the token, and main radical of the first character [冰淇淋 , 冰 , 水]</li>
+                        </ul>
+
+                        <p>We also experimented with a number of different architectures for the recurrent neural network (RNN), including all permutations of the following:</p>
+                        <ul>
+                            <li>Simple, GRU (gated recurrent unit), or LSTM (long short-term memory) cells</li>
+                            <li>Unidirectional or bidirectional RNN</li>
+                            <li>Single or multi-layer RNN</li>
+                            <li>Pretrained or randomly initialized embeddings. Pretrained word embeddings came from Facebook, and we trained character-level and radical-level embeddings ourselves using a skip-gram word2vec model.</li>
+                        </ul>
                         <p>
-                            There are key differences between the Chinese and English languages. Chinese entities are composed of 50,000 characters, unlike English entities which are composed of 26 letters. Each Chinese character holds intrinsic meaning, but also embodies and contributes to a wide variety of meanings depending on which entity it is part of and its surrounding context. This differs from English, as the letter ”c” by itself holds no intrinsic meaning. Additionally, obvious English features used in NER such as word capitalization do not exist in Chinese. The Chinese written language also does not contain spaces between entities, so word segmentation is an additional challenge. Thus, imperfect segmentation techniques must be performed on datasets before NER-work, adding another layer of difficulty. 
-                        </p>
-                        <p>
-                            An additional feature we have decided to include that is specific to the Chinese language is each character’s main radical. A radical is a sub-part of a character. There are 214 radicals, which were identified historically by the Qing Emperor Kangxi; today, radicals are used as the basis for Chinese dictionary indexing. Radicals help to convey additional meaning behind each character. Take for example, the characters 食 (food), 餓 (hungry), 飯 (rice), and 餐 (meal). All of these characters have the main radical 食 and are related to food. We establish and feed to our neural network additional relational information through radical embeddings we train using a skip-gram word2vec model. 
+                            Overall, we found that ”token-char-char” input features trained on the unidirectional RNN using pretrained Facebook word embeddings achieved the highest not-O F1 score of 76% and entity-level F1 score of 70%. 
                         </p>
 
                         <a class="btn btn-primary js-scroll-trigger" href="assets/files/chinesener-paper.pdf">Download the paper</a>
@@ -83,7 +111,7 @@
                             This was my final project for <i>Natural Language Processing with Deep Learning (CS224N/LINGUIST284)</i>, which I took during winter 2017 at Stanford University. The course focused on neural network models for NLP, including question answering and machine translation.
                         </p>
                         <p>
-                            The project was done in partnership with two other students in the course. TODO: DISCUSS MY ROLE
+                            The project was done in partnership with two other students in the course. My primary contributions included: acquiring and cleaning data; implementing basic NER model as well as multilayer and bidirectional RNN; adding radical/token/character-level features; debugging model performance and tuning RNN hyperparameters.
                         </p>
                         <p><i>March 2017</i></p>
                     </div>
