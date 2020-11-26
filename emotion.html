@@ -54,25 +54,53 @@
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
                         <p>
-                            Recent methods for semantic image synthesis require a full segmentation map of the scene. We are interested in using the abstracted input of emotion to generate image content. We build upon related work in image emotion classification and image content prediction to enable prediction of scene graph components and composition based on an input emotion. Our baseline approaches map images to a single emotion and we extend upon this to predict more detailed emotion distributions building upon state-of-the-art architectures. We explore object prediction and detection methods to synthesize scene graphs with ground truth emotion distributions and vice-versa. To accomplish our task we use the Emotion6 dataset which maps image to emotional responses and Visual Genome to gather images annotated with scene graphs. From our experiments, we developed an Emotion Stimuli Map predictor and integrate it into an enhanced model to predict emotions distributions with an MSE loss of 0.0159, a model that to predict emotions distributions from objects only with an MSE loss of 0.042, and models to generate objects from emotion distributions on the Visual Genome dataset.
+                            We were initially inspired by image synthesis models, such as <a href="http://nvidia-research-mingyuliu.com/gaugan/">GauGAN</a>, which can generate a realistic image based on a segmentation map. We were interested in extending such models to synthesize images, including predicting scene components and composition, based on an input emotion.
                         </p>
                         <p>
-                            In this work, we have explored an initial approach towards a translation from emotional intent to scene component creation. We aimed to leverage emotion-labeled image datasets and scene graph-labeled image datasets to learn mappings between these domains. To do so, we generated proxy datasets based on ground-truth emotions with predicted scene components (objects) and based on ground-truth scene graphs with predicted emotion distributions. This step comprised a substantial portion of our task: learning to predict emotion distributions based on input images. Using CNN-based approaches and building a supplementary model that predicted emotion stimuli maps for images, we achieved our best-performing model which exceeded the performance of prior published work.
-                        </p>
+                            Towards this end, we focused on predicting scene elements given an emotion distribution. Because there are no existing image datasets containing both emotion and scene graph labels, we first needed to create our own. We synthesized the following two datasets:
+                        </p> 
+                        <ul>
+                            <li><b>Dataset A: Ground truth emotion distribution, Synthesized scene graphs</b> We ran a pretrained object detection system on the Emotion6 dataset, which already contains images and ground truth emotion distribution labels. This resulted in a list of object names, confidences, and bounding boxes for each image.</li>
+                            <li><b>Dataset B: Synthesized emotion distribution, Ground truth scene graphs.</b> We ran our model trained on the Emotion6 dataset to predict emotion distributions for the Visual Genome images, which already contain scene graph information.</li>
+                        </ul>
+
+                         <div class="row justify-content-center no-gutters">
+                            <div class="col-lg-9">
+                                <img class="img-fluid mb-4" src="assets/img/emotion/disgust-objects.png" alt="" />
+                                <p>Input emotion distribution along with word clouds of objects from the ground truth scene graph, and objects predicted by a model trained on synthesized dataset B. This emotion distribution heavily weights “disgust.”</p>
+
+                                <img class="img-fluid mb-4" src="assets/img/emotion/joy-objects.png" alt="" />
+                                <p>A second example of input emotion distribution with word clouds of ground truth and predicted objects. This emotion distribution heavily weights “joy.”</p>
+                            </div>
+                        </div>
+
                         <p>
-                            For the scope of this project, we focus on predicting an image’s emotion distribution given the image and its scene graph, and then reversing that mapping to predict elements of an image’s content given an emotion distribution. To do this, we propose the following process. First, we train an emotion distribution predictor on an image emotion classification dataset, Emotion6. Then, we once we achieve a satisfactory model, we run this model on a dataset with human-annotated scene graphs, such as Visual Genome, to learn a mapping between scene graphs and emotions. Finally, we reverse this mapping to enable prediction of scene graph components based on an input emotion distribution.
+                            Our project consisted of the following steps to synthesize datasets and train a model to predict scene elements from emotion:
                         </p>
+                        <ol>
+                            <li><b>Emotion classification prediction.</b> We experimented with a baseline SVM model, CNN model, and an AlexNet model to predict the emotion class of an image.</li>
+                            <li><b>Emotion distribution prediction.</b> In order to better capture a nuanced set of emotions that an image can convey, we shifted to predicting a distribution of emotions rather than a single emotion class. For this task, we created models based on AlexNet, ResNet, and VGG architectures.</li>
+                            <li><b>Emotion Stimuli Map (ESM) prediction.</b> We wanted to supplement our emotion distribution predictive model from step 2 with some notion of "attention" to the regions of the image that are more relevant to the emotional distribution. We used the EmotionROI dataset, which pairs Emotion6 images with a ground truth pixel map of the regions that evoked the indicated emotion, called the Emotion Stimuli Map (ESM). We trained a fully convolutional model to predict the ESM from an input image. The results from this model was fed as a feature to the model created in step 2, which was run on the Visual Genome dataset to create dataset B. </li>
+                            <li><b>Object prediction.</b> We ran the pretrained YOLO object detection system on the Emotion6 dataset to create dataset A, which augmented existing emotion distribution labels with predicted object information.</li>
+                            <li><b>Emotion prediction from objects.</b> We trained a model to predict an emotion distribution from the list of object names contained in a scene. We experimented with a baseline model using a single fully connected layer and pretrained GloVe word embeddings; we also explored RNN and LSTM architectures that take into account object relationships in the scene graph.</li>
+                            <li><b>Object prediction from emotion distribution.</b> We constructed a neural network that takes the 7-dimensional emotion distribution vector as input, and outputs a vector containing a confidence rating for each object in the possible object set. The ground truth output is a vector where the confidence rating is the object occurrence count in the image divided by the total object occurrence count in the training set. This normalization was done to encourage less frequent but more salient objects to be predicted. </li>
+                        </ol>
 
                         <div class="row justify-content-center no-gutters">
-                            <div class="col-lg-5"><img class="img-fluid mb-4" src="assets/img/emotion/em_roi_pred.png" alt="" /></div>
+                            <div class="col-lg-5">
+                                <img class="img-fluid mb-4" src="assets/img/emotion/em_roi_pred.png" alt="" />
+                                <p>A comparison between the true emotion distribution and the distributions predicted by the ResNet-based and VGG-based models for a variety of test set images.</p>
+                            </div>
                             <div class="col-lg-2"></div>
-                            <div class="col-lg-5"><img class="img-fluid mb-4" src="assets/img/emotion/image-asset.png" alt="" /></div>
+                            <div class="col-lg-5">
+                                <img class="img-fluid mb-4" src="assets/img/emotion/image-asset.png" alt="" />
+                                <p>A comparison between the ground truth and predicted emotion stimuli maps (ESMs). The differences between the ground truth and predicted maps are displayed with red indicating regions with larger magnitude of difference. Model versions that convert the input image to 32x32 and 64x64 are compared.</p>
+                            </div>
                         </div>
-                        <div class="row justify-content-center no-gutters">
-                            <div class="col-lg-5"><p>A comparison between the true emotion distribution and the distributions predicted by the ResNet-based and VGG-based models for a variety of test set images.</p></div>
-                            <div class="col-lg-2"></div>
-                            <div class="col-lg-5"><p>A comparison between the ground truth and predicted emotion stimuli maps (ESMs).The differences between the ground truth and predicted maps are displayed with red indicating regions with larger magnitude of difference. Model versions that convert the input image to 32x32 and 64x64 are compared.</p></div>
-                        </div>
+
+                        <p>
+                            We successfully explored an initial approach towards translating emotional intent to scene component creation. We generated two synthetic datasets, used them to train a model that generates plausible predictions of objects based on emotion distribution. Additionally, for the task of predicting emotion distribution from an image, we used CNN-based approaches and built a supplementary model that predicted emotion stimuli maps for images; our best-performing model exceeded the performance of prior published work.
+                        </p>
 
                         <a class="btn btn-primary js-scroll-trigger" href="assets/files/emotion-paper.pdf">Download the paper</a>
                     </div>
