@@ -53,11 +53,14 @@
                 <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-8">
+                        <h4>Overview</h4>
                         <p>
-                            We were initially inspired by image synthesis models, such as <a href="http://nvidia-research-mingyuliu.com/gaugan/">GauGAN</a>, which can generate a realistic image based on a segmentation map. We were interested in extending such models to synthesize images, including predicting scene components and composition, based on an input emotion.
+                            For this project, our primary objective was to combine emotion and image generation. In particular, we were inspired by image synthesis models, such as <a href="http://nvidia-research-mingyuliu.com/gaugan/">GauGAN</a>, which can generate a realistic image based on a segmentation map. We were interested in extending such models to synthesize images, including predicting scene components and composition, based on an input emotion. Towards this end, we focused on predicting the emotions conveyed by an image, and then worked towards predicting scene elements given an emotion distribution.
                         </p>
+
+                        <h4>Details</h4>
                         <p>
-                            Towards this end, we focused on predicting scene elements given an emotion distribution. Because there are no existing image datasets containing both emotion and scene graph labels, we first needed to create our own. We synthesized the following two datasets:
+                            Because there are no existing image datasets containing both emotion and scene graph labels, we first needed to create our own. We synthesized the following two datasets:
                         </p> 
                         <ul>
                             <li><b>Dataset A: Ground truth emotion distribution, Synthesized scene graphs</b> We ran a pretrained object detection system on the Emotion6 dataset, which already contains images and ground truth emotion distribution labels. This resulted in a list of object names, confidences, and bounding boxes for each image.</li>
@@ -102,7 +105,9 @@
                             We successfully explored an initial approach towards translating emotional intent to scene component creation. We generated two synthetic datasets, used them to train a model that generates plausible predictions of objects based on emotion distribution. Additionally, for the task of predicting emotion distribution from an image, we used CNN-based approaches and built a supplementary model that predicted emotion stimuli maps for images; our best-performing model exceeded the performance of prior published work.
                         </p>
 
-                        <a class="btn btn-primary js-scroll-trigger" href="assets/files/emotion-paper.pdf">Download the paper</a>
+                        <div class="row justify-content-center no-gutters mb-5 mt-4 mb-lg-0">
+                            <a class="btn btn-primary js-scroll-trigger" href="assets/files/emotion-paper.pdf">Download the paper</a>
+                        </div>
                     </div>
 
                     <div class="col-lg-2"></div>
